@@ -164,8 +164,8 @@ void publich()
 	vw_hat.linear.x = xp_hat(0);
 	vw_hat.angular.z = xp_hat(1);
 
-	torque_hat.linear.x = xp_hat(3);
-	torque_hat.linear.y = xp_hat(2);
+	torque_hat.linear.x = xp_hat(3); // tl
+	torque_hat.linear.y = xp_hat(2); // tr
 
 	vwHat.publish(vw_hat);
 	torque.publish(torque_hat);
@@ -189,6 +189,9 @@ int main(int argc, char** argv)
 	while(ros::ok())
 	{
 		ros::spinOnce();
+		systemSetup();
+		prediction();
+		update();
 		publich();
 		loop_rate.sleep();
 	}
